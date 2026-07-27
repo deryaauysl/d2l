@@ -21,6 +21,10 @@ Y = torch.ones(3, 4)
 assert torch.cat((X, Y), dim=0).shape == (6, 4)
 assert torch.cat((X, Y), dim=1).shape == (3, 8)
 
+p = torch.arange(3).reshape(3, 1)   # (3,1)
+q = torch.arange(2).reshape(1, 2)   # (1,2)
+assert (p + q).shape == (3, 2)      # broadcasting: (3,1)+(1,2)->(3,2)
+
 # in-place: [:] üstüne yazar, yeni bellek açmaz
 Z = torch.zeros_like(Y); before = id(Z)
 Z[:] = X + Y
